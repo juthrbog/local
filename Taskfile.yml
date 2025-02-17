@@ -1,0 +1,206 @@
+version: '3.41.0'
+
+includes:
+  installTasks: ./tasks/installTasks.yml
+  deployTasks: ./tasks/DeployTasks.yml
+
+set: [pipefail]
+shopt: [globstar]
+
+dotenv:
+  - '.env'
+
+tasks:
+  install_all:
+    aliases:
+      - all
+    deps:
+      - install_brew
+      - install_warp
+      - install_orbstack
+    cmds:
+      - echo "installed everything.."
+
+  install_brew:
+    aliases:
+      - brew
+    cmds:
+      - /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    status:
+      - brew --version
+
+  install_warp:
+    aliases:
+      - warp
+    deps:
+      - brew
+    cmds:
+      - brew install --cask warp
+    status:
+      - brew info warp
+
+  install_starship:
+    aliases:
+      - starship
+    deps:
+      - brew
+    cmds:
+      - brew install starship
+    status:
+      - brew info starship
+
+  install_raycast:
+    aliases:
+      - raycast
+    deps:
+      - brew
+    cmds:
+      - brew install --cask raycast
+    status:
+      - brew info raycast
+
+  install_orbstack:
+    aliases:
+      - orbstack
+    deps:
+      - brew
+    cmds:
+      - brew install orbstack
+    status:
+      - orb version
+      - docker --version
+
+  install_vscode:
+    aliases:
+      - vscode
+    deps:
+      - brew
+    cmds:
+      - brew install --cask visual-studio-code
+    status:
+      - code --version
+
+  install_google_chrome:
+    aliases:
+      - chrome
+    deps:
+      - brew
+    cmds:
+      - brew install --cask google-chrome
+    status:
+      - brew info google-chrome
+
+  install_chatgpt_app:
+    aliases:
+      - chatgpt
+    deps:
+      - brew
+    cmds:
+      - brew install --cask chatgpt
+    status:
+      - brew info chatgpt
+
+  install_flameshot:
+    aliases:
+      - flameshot
+    deps:
+      - brew
+    cmds:
+      - brew install --cask flameshot
+    status:
+      - brew info flameshot
+
+  install_jq:
+    aliases:
+      - jq
+    deps:
+      - brew
+    cmds:
+      - brew install jq
+    status:
+      - jq --version
+
+  install_yq:
+    aliases:
+      - yq
+    deps:
+      - brew
+    cmds:
+      - brew install yq
+    status:
+      - yq --version
+
+  install_ripgrep:
+    aliases:
+      - rg
+    deps:
+      - brew
+    cmds:
+      - brew install ripgrep
+    status:
+      - rg --version
+
+  install_lsd:
+    aliases:
+      - lsd
+    deps:
+      - brew
+    cmds:
+      - brew install lsd
+    status:
+      - lsd --version
+
+  install_neovim_nightly:
+    aliases:
+      - nvim
+    cmds:
+      - mkdir -p /opt/nvim
+      - curl -LO https://github.com/neovim/neovim/releases/download/nightly/nvim-macos-arm64.tar.gz
+      - xattr -c ./nvim-macos-arm64.tar.gz
+      - tar xzvf nvim-macos-arm64.tar.gz -C /opt/nvim
+      - rm -f ./nvim-macos-arm64.tar.gz
+      - grep -qxF 'export PATH=/opt/nvim/bin:$PATH' $HOME/.bashrc || echo 'export PATH=/opt/nvim/bin:$PATH' >> $HOME/.bashrc
+    status:
+      - lsd --version
+
+  install_goenv:
+    aliases:
+      - goenv
+    deps:
+      - brew
+    cmds:
+      - brew install goenv
+    status:
+      - goenv --version
+
+  install_uv:
+    aliases:
+      - uv
+    cmds:
+      - curl -LsSf https://astral.sh/uv/install.sh | sh
+    status:
+      - uv --version
+
+  install_fd:
+    aliases:
+      - fd
+    deps:
+      - brew
+    cmds:
+      - brew install fd
+    status:
+      - fzf --version
+
+  install_fzf:
+    aliases:
+      - fzf
+    deps:
+      - brew
+      - fd
+    cmds:
+      - brew install fzf
+      - grep -qxF 'eval "$(fzf --bash)"' $HOME/.bashrc || echo 'eval "$(fzf --bash)"' >> $HOME/.bashrc
+      - grep -qxF 'export FZF_DEFAULT_COMMAND="fd --no-ignore --hidden --exclude \'.git\' --exclude \'.venv\' --exclude node_modules --color=always"' $HOME/.bashrc || echo 'fd --no-ignore --hidden --exclude \'.git\' --exclude \'.venv\' --exclude node_modules --color=always"' >> $HOME/.bashrc
+      - grep -qxF 'export FZF_DEFAULT_OPTS="--ansi"' $HOME/.bashrc || echo 'export FZF_DEFAULT_OPTS="--ansi"' >> $HOME/.bashrc
+    status:
+      - fzf --version
