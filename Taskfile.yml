@@ -319,3 +319,34 @@ tasks:
       - brew install httpie
     status:
       - httpie --version
+
+  install-kubescape:
+    aliases:
+      - kubescape
+    deps:
+      - brew
+    cmds:
+      - brew tap kubescape/tap
+      - brew install kubescape-cli
+    status:
+      - kubescape --version
+
+  install-lazydocker:
+    aliases:
+      - lazydocker
+    deps:
+      - brew
+    cmds:
+      - brew install jesseduffield/lazydocker/lazydocker
+    status:
+      - lazydocker --version
+
+  install-lazygit:
+    aliases:
+      - lazygit
+    deps:
+      - brew
+    cmds:
+      - brew install jesseduffield/lazygit/lazygit
+    status:
+      - lazygit --version
