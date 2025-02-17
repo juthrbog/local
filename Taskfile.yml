@@ -1,9 +1,5 @@
 version: '3.41.0'
 
-includes:
-  installTasks: ./tasks/installTasks.yml
-  deployTasks: ./tasks/DeployTasks.yml
-
 set: [pipefail]
 shopt: [globstar]
 
@@ -204,3 +200,122 @@ tasks:
       - grep -qxF 'export FZF_DEFAULT_OPTS="--ansi"' $HOME/.bashrc || echo 'export FZF_DEFAULT_OPTS="--ansi"' >> $HOME/.bashrc
     status:
       - fzf --version
+
+  install-doggo:
+    aliases:
+      - doggo
+    cmds:
+      - curl -sS https://raw.githubusercontent.com/mr-karan/doggo/main/install.sh | sh
+    status:
+      - doggo --version
+
+  install-bat:
+    aliases:
+      - bat
+    deps:
+      - brew
+    cmds:
+      - brew install bat
+    status:
+      - bat --version
+
+  install-dive:
+    aliases:
+      - dive
+    deps:
+      - brew
+    cmds:
+      - brew install dive
+    status:
+      - dive --version
+
+  install-yazi:
+    aliases:
+      - duck
+      - yazi
+    deps:
+      - brew
+    cmds:
+      - brew install yazi ffmpeg sevenzip poppler zoxide imagemagick font-symbols-only-nerd-font
+      - grep -qxF 'function y() {' $HOME/.bashrc || cat functions/yazi.sh >> $HOME/.bashrc
+      - |
+        if [ ! -e $HOME/.config/yazi/yazi.toml ]; then
+          cat ./configs/yazi.toml > $HOME/.config/yazi/yazi.toml
+        else
+          mkdir -p $HOME/.config/yazi
+          cat ./configs/yazi.toml > $HOME/.config/yazi/yazi.toml
+        fi
+    status:
+      - yazi --version
+
+  install-sops:
+    aliases:
+      - sops
+    cmds:
+      - curl -LO https://github.com/getsops/sops/releases/download/v3.9.4/sops-v3.9.4.darwin.arm64
+      - mv sops-v3.9.4.darwin.arm64 $HOME/.local/bin/sops
+      - chmod u+x $HOME/.local/bin/sops
+    status:
+      - sops --version
+
+  install-btop:
+    aliases:
+      - btop
+    deps:
+      - brew
+    cmds:
+      - brew install btop
+    status:
+      - btop --version
+
+  install-oha:
+    aliases:
+      - oha
+    deps:
+      - brew
+    cmds:
+      - brew install oha
+    status:
+      - oha --version
+
+  install-posting:
+    aliases:
+      - posting
+    deps:
+      - install-uv
+    cmds:
+      - uv tool install --python 3.12 posting
+    status:
+      - posting --version
+
+  install-harlequin:
+    aliases:
+      - harlequin
+      - sql-ide
+    deps:
+      - install-uv
+    cmds:
+      - uv tool install 'harlequin[postgres,mysql,s3]'
+    status:
+      - harlequin --version
+
+  install-kubectx:
+    aliases:
+      - kubectx
+    deps:
+      - brew
+    cmds:
+      - brew install kubectx
+    status:
+      - kubectx -h
+      - kubens -h
+
+  install-httpie:
+    aliases:
+      - httpie
+    deps:
+      - brew
+    cmds:
+      - brew install httpie
+    status:
+      - httpie --version
