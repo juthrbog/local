@@ -11,17 +11,17 @@ dotenv:
   - '.env'
 
 tasks:
-  install_all:
+  install-all:
     aliases:
       - all
     deps:
-      - install_brew
-      - install_warp
-      - install_orbstack
+      - install-brew
+      - install-warp
+      - install-orbstack
     cmds:
       - echo "installed everything.."
 
-  install_brew:
+  install-brew:
     aliases:
       - brew
     cmds:
@@ -29,7 +29,7 @@ tasks:
     status:
       - brew --version
 
-  install_warp:
+  install-warp:
     aliases:
       - warp
     deps:
@@ -39,7 +39,7 @@ tasks:
     status:
       - brew info warp
 
-  install_starship:
+  install-starship:
     aliases:
       - starship
     deps:
@@ -49,7 +49,7 @@ tasks:
     status:
       - brew info starship
 
-  install_raycast:
+  install-raycast:
     aliases:
       - raycast
     deps:
@@ -59,7 +59,7 @@ tasks:
     status:
       - brew info raycast
 
-  install_orbstack:
+  install-orbstack:
     aliases:
       - orbstack
     deps:
@@ -70,7 +70,7 @@ tasks:
       - orb version
       - docker --version
 
-  install_vscode:
+  install-vscode:
     aliases:
       - vscode
     deps:
@@ -80,7 +80,7 @@ tasks:
     status:
       - code --version
 
-  install_google_chrome:
+  install-google-chrome:
     aliases:
       - chrome
     deps:
@@ -90,7 +90,7 @@ tasks:
     status:
       - brew info google-chrome
 
-  install_chatgpt_app:
+  install-chatgpt-app:
     aliases:
       - chatgpt
     deps:
@@ -100,7 +100,7 @@ tasks:
     status:
       - brew info chatgpt
 
-  install_flameshot:
+  install-flameshot:
     aliases:
       - flameshot
     deps:
@@ -110,7 +110,7 @@ tasks:
     status:
       - brew info flameshot
 
-  install_jq:
+  install-jq:
     aliases:
       - jq
     deps:
@@ -120,7 +120,7 @@ tasks:
     status:
       - jq --version
 
-  install_yq:
+  install-yq:
     aliases:
       - yq
     deps:
@@ -130,7 +130,7 @@ tasks:
     status:
       - yq --version
 
-  install_ripgrep:
+  install-ripgrep:
     aliases:
       - rg
     deps:
@@ -140,7 +140,7 @@ tasks:
     status:
       - rg --version
 
-  install_lsd:
+  install-lsd:
     aliases:
       - lsd
     deps:
@@ -150,7 +150,7 @@ tasks:
     status:
       - lsd --version
 
-  install_neovim_nightly:
+  install-neovim-nightly:
     aliases:
       - nvim
     cmds:
@@ -163,7 +163,7 @@ tasks:
     status:
       - lsd --version
 
-  install_goenv:
+  install-goenv:
     aliases:
       - goenv
     deps:
@@ -173,7 +173,7 @@ tasks:
     status:
       - goenv --version
 
-  install_uv:
+  install-uv:
     aliases:
       - uv
     cmds:
@@ -181,7 +181,7 @@ tasks:
     status:
       - uv --version
 
-  install_fd:
+  install-fd:
     aliases:
       - fd
     deps:
@@ -191,7 +191,7 @@ tasks:
     status:
       - fzf --version
 
-  install_fzf:
+  install-fzf:
     aliases:
       - fzf
     deps:
