@@ -236,6 +236,7 @@ tasks:
     deps:
       - brew
     cmds:
+      - echo "This one takes a few minutes..."
       - brew install yazi ffmpeg sevenzip poppler zoxide imagemagick font-symbols-only-nerd-font
       - grep -qxF 'function y() {' $HOME/.bashrc || cat functions/yazi.sh >> $HOME/.bashrc
       - |
@@ -350,3 +351,13 @@ tasks:
       - brew install jesseduffield/lazygit/lazygit
     status:
       - lazygit --version
+
+  install-age:
+    aliases:
+      - age
+    deps:
+      - brew
+    cmds:
+      - brew install age
+    status:
+      - age --version
