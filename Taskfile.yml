@@ -361,3 +361,55 @@ tasks:
       - brew install age
     status:
       - age --version
+
+  install-ffmpeg:
+    aliases:
+      - ffmpeg
+    deps:
+      - brew
+    cmds:
+      - brew install ffmpeg
+    status:
+      - ttyd -version
+
+  install-ttyd:
+    aliases:
+      - ttyd
+    deps:
+      - brew
+    cmds:
+      - brew install ttyd
+    status:
+      - ttyd --version
+
+  install-vhs:
+    aliases:
+      - vhs
+    deps:
+      - brew
+      - ttyd
+      - ffmpeg
+    cmds:
+      - brew install vhs
+    status:
+      - vhs --version
+
+  install-freeze:
+    aliases:
+      - freeze
+    deps:
+      - brew
+    cmds:
+      - brew install charmbracelet/tap/freeze
+    status:
+      - freeze --version
+
+  install-fastfetch:
+    aliases:
+      - fastfetch
+    deps:
+      - brew
+    cmds:
+      - brew install fastfetch
+    status:
+      - fastfetch --version
