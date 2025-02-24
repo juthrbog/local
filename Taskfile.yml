@@ -185,7 +185,7 @@ tasks:
     cmds:
       - brew install fd
     status:
-      - fzf --version
+      - fd --version
 
   install-fzf:
     aliases:
@@ -196,7 +196,7 @@ tasks:
     cmds:
       - brew install fzf
       - grep -qxF 'eval "$(fzf --bash)"' $HOME/.bashrc || echo 'eval "$(fzf --bash)"' >> $HOME/.bashrc
-      - grep -qxF 'export FZF_DEFAULT_COMMAND="fd --no-ignore --hidden --exclude \'.git\' --exclude \'.venv\' --exclude node_modules --color=always"' $HOME/.bashrc || echo 'fd --no-ignore --hidden --exclude \'.git\' --exclude \'.venv\' --exclude node_modules --color=always"' >> $HOME/.bashrc
+      - grep -qxF "export FZF_DEFAULT_COMMAND=\"fd --no-ignore --hidden --exclude '.git' --exclude '.venv' --exclude node_modules --color=always\"" "$HOME/.bashrc" || echo "export FZF_DEFAULT_COMMAND=\"fd --no-ignore --hidden --exclude '.git' --exclude '.venv' --exclude node_modules --color=always\"" >> "$HOME/.bashrc"
       - grep -qxF 'export FZF_DEFAULT_OPTS="--ansi"' $HOME/.bashrc || echo 'export FZF_DEFAULT_OPTS="--ansi"' >> $HOME/.bashrc
     status:
       - fzf --version
