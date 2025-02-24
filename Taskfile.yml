@@ -413,3 +413,13 @@ tasks:
       - brew install fastfetch
     status:
       - fastfetch --version
+
+  install-ghostty:
+    aliases:
+      - ghostty
+    deps:
+      - brew
+    cmds:
+      - brew install --cask ghostty
+    status:
+      - ghostty --version
