@@ -423,3 +423,33 @@ tasks:
       - brew install --cask ghostty
     status:
       - ghostty --version
+
+  install-zellij:
+    aliases:
+      - zellij
+    deps:
+      - brew
+    cmds:
+      - brew install zellij
+    status:
+      - zellij --version
+
+  install-scooter:
+    aliases:
+      - scooter
+    deps:
+      - brew
+    cmds:
+      - brew install scooter
+    status:
+      - scooter --version
+
+  install-glow:
+    aliases:
+      - glow
+    deps:
+      - brew
+    cmds:
+      - brew install charmbracelet/tap/glow
+    status:
+      - glow --version
